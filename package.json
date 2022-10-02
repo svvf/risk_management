@@ -7,7 +7,8 @@
   "private": true,
   "dependencies": {
     "@sap/cds": "^6",
-    "express": "^4"
+    "express": "^4",
+    "@sap/cds-dk": "6.1.5"
   },
   "devDependencies": {
     "@sap/ux-specification": "^1.102.9",
