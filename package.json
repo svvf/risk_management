@@ -7,15 +7,15 @@
   "private": true,
   "dependencies": {
     "@sap/cds": "^6",
+    "@sap/cds-dk": "6.1.5",
     "express": "^4",
-    "@sap/cds-dk": "6.1.5"
+    "sqlite3": "^5.1.2"
   },
   "devDependencies": {
-    "@sap/ux-specification": "^1.102.9",
-    "sqlite3": "^5.0.4"
+    "@sap/ux-specification": "^1.102.9"
   },
   "scripts": {
-    "start": "cds watch --open risks/webapp/index.html?sap-ui-xx-viewCache=false",
+    "start": "npx nodemon -e cds.csv.properties -w app -w db -x \"cds deploy && cds run\"",
     "watch-risks": "cds watch --open risks/webapp/index.html?sap-ui-xx-viewCache=false"
   },
   "engines": {
@@ -48,5 +48,15 @@
   },
   "sapux": [
     "app/risks"
-  ]
+  ],
+  "cds": {
+    "requires": {
+      "db": {
+        "kind": "sqlite",
+        "credentials": {
+          "database": "db/my.db"
+        }
+      }
+    }
+  }
 }

@@ -1,6 +1,7 @@
 namespace sap.ui.riskmanagement;
 using { managed } from '@sap/cds/common';
 
+  @cds.persistence.exists
   entity Risks : managed {
     key ID      : UUID  @(Core.Computed : true);
     title       : String(100);
