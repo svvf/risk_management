@@ -6,9 +6,11 @@
   "license": "UNLICENSED",
   "private": true,
   "dependencies": {
-    "@sap/cds": "^6",
-    "@sap/cds-dk": "6.1.5",
+    "@sap/cds": "5.9.8",
+    "cds-dbm": "^0.0.36",
+    "cds-pg": "^0.1.30",
     "express": "^4",
+    "@sap/cds-odata-v2-adapter-proxy":"*",
     "sqlite3": "^5.1.2"
   },
   "devDependencies": {
@@ -16,7 +18,9 @@
   },
   "scripts": {
     "start": "npx nodemon -e cds.csv.properties -w app -w db -x \"cds deploy && cds run\"",
-    "watch-risks": "cds watch --open risks/webapp/index.html?sap-ui-xx-viewCache=false"
+    "watch-risks": "cds watch --open risks/webapp/index.html?sap-ui-xx-viewCache=false",
+    "deploy": "npx cds-dbm deploy",
+    "run": "npx cds run"
   },
   "engines": {
     "node": "^16.15"
@@ -52,9 +56,26 @@
   "cds": {
     "requires": {
       "db": {
-        "kind": "sqlite",
-        "credentials": {
-          "database": "db/my.db"
+        "kind": "database",
+        "dialect": "plain"
+        },
+        "database": {
+          "impl": "cds-pg",
+          "model": [
+            "srv"
+          ]
+        }
+      },
+    "migrations": {
+      "db": {
+        "schema": {
+          "default": "public",
+          "clone": "_cdsdbm_clone",
+          "reference": "_cdsdbm_ref"
+        },
+        "deploy": {
+          "tmpFile": "tmp/_autodeploy.json",
+          "undeployFile": "db/undeploy.json"
         }
       }
     }

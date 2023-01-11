@@ -46,7 +46,10 @@ annotate RiskService.Risks with @(
 			{
 				Value: impact,
 				Criticality: criticality
-			}
+			},
+    		{ 	$Type  : 'UI.DataFieldForAction',
+      			Action : 'RiskService.increaseImpact',
+      			Label  : '{i18n>increaseImpact}'   }
 		],
 		Facets: [
 			{$Type: 'UI.ReferenceFacet', Label: 'Main', Target: '@UI.FieldGroup#Main'}
@@ -89,4 +92,4 @@ annotate RiskService.Risks with {
 			}
 		}
 	);
-}
+};

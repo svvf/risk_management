@@ -1,0 +1,25 @@
+@hostname = localhost
+@port = 4004
+
+
+#the following requests assume distinct ids and/or attributes of entities to already exist in the database; they might need
+#small adjustments, before they work with the actual data 
+
+
+###
+#Get Risk by ID
+GET http://{{hostname}}:{{port}}/service/risk/Risks(ID=3fcfe3bc-f9d5-4473-a919-5b8bf10417f2,IsActiveEntity=true)
+
+
+###
+#Get Risk by Title
+GET http://{{hostname}}:{{port}}/service/risk/Risks?$filter=title%20eq%20%27changed2%27
+
+###
+#call action
+POST http://{{hostname}}:{{port}}/service/risk/Risks(ID=3fcfe3bc-f9d5-4473-a919-5b8bf10417f2,IsActiveEntity=true)/increaseImpact
+content-type: application/json
+
+{
+
+}

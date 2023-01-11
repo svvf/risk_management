@@ -67,6 +67,15 @@
         data-sap-ui-resourceroots='{"ns.risks": "../"}'
         data-sap-ui-frameOptions="allow"> // NON-SECURE setting for testing environment
     </script>
+
+<script type="text/javascript">
+    sap.ui.getCore().attachInit(function() {
+        // initialize the ushell sandbox component
+        sap.ushell.Container.createRenderer().placeAt("content");
+    });
+</script>
+
+
 </head>
 
 <!-- UI Content -->
